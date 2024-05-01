@@ -21,8 +21,9 @@ export default {
       colors: {
         current: 'currentColor',
         transparent: 'transparent',
-        primary: "#A5ABB5",
-        primaryHover: "#BEC2C9",
+        // primary: "#A5ABB5",
+        prmary:"#3C50E0",
+        // primaryHover: "#BEC2C9",
         white: '#FFFFFF',
         black: '#1C2434',
         'black-2': '#010101',
