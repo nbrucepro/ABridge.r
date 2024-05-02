@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import UserOne from "../../assets/user-01.png";
+import UserOne from "../../assets/bruce.png";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -40,19 +40,19 @@ const DropdownUser = () => {
       <Link
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center gap-4"
+        className="flex items-center gap-3"
         to="#"
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            Neza Bruce
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">Developer</span>
         </span>
 
-        <span className="h-12 w-12 rounded-full">
-          <img src={UserOne} alt="User" />
-        </span>
+        <div className="h-10 w-10 rounded-full flex items-center">
+          <img className="h-full rounded-full w-full flex items-center" src={UserOne} alt="User" />
+        </div>
 
         <svg
           className="hidden fill-current sm:block"
