@@ -27,9 +27,9 @@ const Breadcrumb = ({ pageName }) => {
           <li className="font-medium dark:text-white">{pageName}</li>
         </ol>
       </nav>
-      <div className="flex sm:items-end flex-col justify-center">
+      <div className="flex sm:items-end flex-col justify-center sm:mb-0 mb-4">
         <h6 className="font-bold text-black dark:text-white">From 23 April</h6>
-        <h6 className="text-primary dark:text-white">Updated 12 min ago</h6>
+        <h6 className="text-primary dark:text-white text-sm">Updated 12 min ago</h6>
       </div>
     </div>
   );

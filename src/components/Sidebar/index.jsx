@@ -8,9 +8,9 @@ import { BiChart } from "react-icons/bi";
 import { CiSettings } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
 import Logo from "../../assets/logo.png";
-import Pic1 from "../../assets/pic1.jpg";
-import Pic2 from "../../assets/pic2.jpg";
-import Pic3 from "../../assets/pic3.jpg";
+import Pic1 from "../../assets/pic6.jpg";
+import Pic2 from "../../assets/pic4.jpg";
+import Pic3 from "../../assets/pic5.jpg";
 import Cirlced from "./Cirlced";
 
 const Links = [
@@ -96,7 +96,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-24 flex-col overflow-y-hidden bg-white duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-1 flex h-screen w-24 flex-col overflow-y-hidden bg-white duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >

@@ -4,6 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import DropdownNotification from "./DropdownNotification";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownUser from "./DropdownUser";
+import Logo from "../../assets/logo.png";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   return (
@@ -50,9 +51,8 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
               </span>
             </span>
           </button>
-          <Link className="block flex-shrink-0 lg:hidden" to="/">
-            {/* <img src={LogoIcon} alt="Logo" /> */}
-            Looog
+          <Link className="block w-10 h-10 flex-shrink-0 lg:hidden" to="/">
+            <img src={Logo} alt="Logo" />
           </Link>
         </div>
         <div className="hidden sm:block">

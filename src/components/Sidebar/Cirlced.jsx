@@ -10,7 +10,7 @@ const Cirlced = ({ element, type }) => {
           alt="image"
         />
       ) : (
-        <div class="rounded-full h-[1.8rem] w-[1.8rem] group relative flex items-center justify-center gap-2.5 lg:my-1 px-1 font-medium text-bodydark1 duration-300 ease-in-out bg-white border border-primary">
+        <div className="rounded-full h-[1.8rem] w-[1.8rem] group relative flex items-center justify-center gap-2.5 lg:my-1 px-1 font-medium text-bodydark1 duration-300 ease-in-out bg-white border border-primary">
           {element}
         </div>
       )}
