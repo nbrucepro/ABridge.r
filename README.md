@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+[<a name="readme-top"></a>
 <!-- PROJECT LOGO -->
 <br />
 <div align="start">
@@ -7,15 +7,17 @@
 
   <p align="start">
   This project involves creating web application for project management. Welcome to our TODO web application, a versatile tool designed to streamline your task management process. With intuitive features and a user-friendly interface, our app empowers you to organize your tasks efficiently, prioritize deadlines, and track your progress effortlessly. Whether you're managing personal projects or collaborating with a team, our TODO app simplifies the complexities of task management, making productivity a breeze. 
-    <br /> 
-    <br />
-    <a href="https://abridge-ecru.vercel.app/"><strong>The link »</strong></a>
     <br />    
   </p>
   <p align="start">
   Clicking new task: Open creating new task model
+    <br /> 
   Clicking threedDdots icon: Open delete/update popu
+    <br />
   Clicking single task: Open single task
+    <br /> 
+    <br />
+  <a href="https://abridge-ecru.vercel.app/"><strong>The link »</strong></a>
   </p>
   <hr/>
 </div>
@@ -82,3 +84,4 @@ Project Link: [https://github.com/nbrucepro/Abridge](https://github.com/nbrucepr
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+](url)
