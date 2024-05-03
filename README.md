@@ -1,4 +1,3 @@
-[<a name="readme-top"></a>
 <!-- PROJECT LOGO -->
 <br />
 <div align="start">
@@ -83,5 +82,3 @@ Neza Bruce Irategeka - [neza-dev](linkedin.com/in/neza-dev/) - nezabruce@gmail.c
 Project Link: [https://github.com/nbrucepro/Abridge](https://github.com/nbrucepro/Abridge)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-](url)
