@@ -41,7 +41,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+![image](https://github.com/nbrucepro/Abridge/assets/75426019/9332af0a-7801-4229-b64a-6d39a1449da5)
 
 <!-- GETTING STARTED -->
 ## Getting Started
