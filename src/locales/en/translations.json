@@ -26,5 +26,13 @@
     "task_added_successfully": "Task added successfully",
     "task_updated_successfully": "Task updated successfully",
     "task_deleted_successfully": "Task deleted successfully",
-    "mintodo_delete": "You can only delete 2 todos for better experience"
+    "mintodo_delete": "You can only delete 2 todos for better experience",
+    "type_message": "Your message",
+    "team_chat": "Team Chat",
+    "timeline": "Timeline",
+    "team": "Team",
+    "status": "Status",
+    "project_overview":"Project Overview",
+    "see_all":"See all",
+    "may": "May"
 }

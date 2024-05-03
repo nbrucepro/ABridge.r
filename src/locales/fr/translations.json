@@ -26,5 +26,13 @@
   "task_added_successfully": "Tâche ajoutée avec succès",
   "task_updated_successfully": "Tâche mise à jour avec succès",
   "task_deleted_successfully": "Tâche supprimée avec succès",
-  "mintodo_delete": "Vous ne pouvez supprimer que 2 tâches pour une meilleure expérience"
+  "mintodo_delete": "Vous ne pouvez supprimer que 2 tâches pour une meilleure expérience",
+  "type_message": "Votre message",
+  "team_chat": "Discussion d'équipe",
+  "timeline": "Linha do tempo",
+  "team": "Equipe",
+  "status": "Status",
+  "project_overview": "Visão geral do projeto",
+  "see_all": "Ver tudo",
+  "may": "Mai"
 }

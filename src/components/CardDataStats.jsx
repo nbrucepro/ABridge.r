@@ -10,6 +10,7 @@ import Cirlced from "./Sidebar/Cirlced";
 import NewTaskModal from "./Modals/NewTaskModal";
 import { getTodos } from "../redux/features/todos.slice";
 import { useTranslation } from "react-i18next";
+import SingleTodo from "./Modals/SingleTodo";
 
 const CardDataStats = ({ taskId, title, children }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -18,6 +19,7 @@ const CardDataStats = ({ taskId, title, children }) => {
   const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showTodoModal, setShowTodoModal] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
 
   const handleOpenModal = (task) => {
@@ -81,7 +83,13 @@ const CardDataStats = ({ taskId, title, children }) => {
   };
 
   return (
-    <div className="rounded-sm relative options-popup bg-white py-6 px-7.5 dark:border-strokedark dark:bg-boxdark">
+    <div
+      onClick={() => {
+        setTaskToEdit({ id: taskId, title });
+        setShowTodoModal(true);
+      }}
+      className=" cursor-pointer rounded-sm relative options-popup bg-white py-6 px-7.5 dark:border-strokedark dark:bg-boxdark"
+    >
       <div className="flex items-center justify-between">
         <div
           className={`flex p-2 items-center justify-center rounded-sm bg-meta-2 dark:bg-meta-4 
@@ -148,6 +156,12 @@ const CardDataStats = ({ taskId, title, children }) => {
       )}
       {isModalOpen && (
         <NewTaskModal onClose={handleCloseModal} taskToEdit={taskToEdit} />
+      )}
+      {showTodoModal && (
+        <SingleTodo
+          todoToShow={taskToEdit}
+          onClose={() => setShowTodoModal(false)}
+        />
       )}
     </div>
   );
