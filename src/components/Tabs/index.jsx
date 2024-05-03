@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import FilterSort from "../../assets/filterSort.svg";
 import { BiSort } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import NewTaskModal from "../Modals/NewTaskModal";
+import { useTranslation } from "react-i18next";
+import { getTodos } from "../../redux/features/todos.slice";
 
 const Tabs = ({ children }) => {
   const [activeTab, setActiveTab] = useState(children[0].props.label);
   const { todos } = useSelector((state) => state.todoSlice.todos);
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   const todoLen = todos?.length - 20 || 0;
 
@@ -20,6 +23,50 @@ const Tabs = ({ children }) => {
     e.preventDefault();
     setActiveTab(newActiveTab);
   };
+  const { t, i18n } = useTranslation();
+
+  const handleLanguageChange = () => {
+    switch (activeTab) {
+      case "Toutes les tâches":
+        setActiveTab(t("all_task"));
+        break;
+      case "All Tasks":
+        setActiveTab(t("all_task"));
+        break;
+      case "À faire":
+        setActiveTab(t("todo"));
+        break;
+      case "To do":
+        setActiveTab(t("todo"));
+        break;
+      case "En cours":
+        setActiveTab(t("in_progress"));
+        break;
+      case "In Progress":
+        setActiveTab(t("in_progress"));
+        break;
+      case "Completed":
+        setActiveTab(t("completed"));
+        break;
+      case "To do":
+        setActiveTab(t("completed"));
+        break;
+    }
+  };
+
+  const handleReverse = () => {
+    //sample reverse
+    const reversedTodos = [...todos];
+    reversedTodos.reverse();
+    dispatch(getTodos({ todos: reversedTodos }));
+  };
+
+  useEffect(() => {
+    i18n.on("languageChanged", handleLanguageChange);
+    return () => {
+      i18n.off("languageChanged", handleLanguageChange);
+    };
+  }, [activeTab, i18n]);
 
   return (
     <div>
@@ -33,40 +80,47 @@ const Tabs = ({ children }) => {
                   ? "border-b-4 border-[#7169CE] text-[#7169CE]"
                   : "text-primary dark:text-white"
               }  text-sm  sm:text-sm sm:px-4  font-medium sm:py-4`}
-              onClick={(e) => handleClick(e, child.props.label)}
+              onClick={(e) => {
+                console.log(child.props);
+                handleClick(e, child.props.label);
+              }}
             >
-                <span className="text-xs sm:text-sm px-[0.06rem]">
-              {child.props.label}
-                </span>
-                {/* <span className={`${(child.props.label !== "All tasks" || child.props.label !== "Completed") && "flex" }`}> */}
+              <span className="text-xs sm:text-sm px-[0.06rem]">
+                {child.props.label}
+              </span>
               <span className="mx-1 dark:bg-boxdark-2 bg-[#F3F4F5] px-1">
                 {todoLen > 0 ? (
-                    <>
-                    {child.props.label === "All tasks"
+                  <>
+                    {child.props.label === "All Tasks" ||
+                    child.props.label === "Toutes les tâches"
                       ? todos?.length
-                      : child.props.label === "To do"
+                      : child.props.label === "To do" ||
+                        child.props.label === "À faire"
                       ? todoLen
-                      : child.props.label === "In Progress"
+                      : child.props.label === "In Progress" ||
+                        child.props.label === "En cours"
                       ? 6
                       : 14}
                   </>
                 ) : (
-                    0
-                    )}
+                  0
+                )}
                 {/* </span> */}
               </span>
             </button>
           ))}
         </div>
         <div className="flex items-center sm:ml-24 justify-between lg:my-0 my-2">
-          <button className="flex items-center bg-transparent p-[0.16rem] font-semibold hover:bg-[#F3F4F5] dark:text-white text-[#6A6A6A] border border-primary hover:border-transparent rounded">
-            {/* <span className="h-4 w-4 text-[#6A6A6A]">
-              <img className="h-full w-full text-[#6A6A6A]" src={FilterSort}/>
-            </span> */}
+          <button
+            onClick={handleReverse}
+            className="flex items-center bg-transparent p-[0.16rem] font-semibold hover:bg-[#F3F4F5] dark:text-white text-[#6A6A6A] border border-primary hover:border-transparent rounded"
+          >
             <span>
               <BiSort />
             </span>
-            <span className="mx-1 text-sm flex">Filter &amp; Sort</span>
+            <span className="mx-1 text-sm flex">
+              {t("filter")} &amp; {t("sort")}
+            </span>
           </button>
           <button
             className="flex items-center p-[0.16rem] text-[#6A6A6A] dark:text-white bg-transparent ml-4 font-semibold  hover:bg-[#F3F4F5] border border-primary hover:border-transparent rounded"
@@ -75,7 +129,7 @@ const Tabs = ({ children }) => {
             <span>
               <FiPlus />
             </span>
-            <span className="mx-2 text-sm">New Task</span>
+            <span className="mx-2 text-sm">{t("new_task")}</span>
           </button>
           {showModal}
           {showModal && <NewTaskModal onClose={() => setShowModal(false)} />}

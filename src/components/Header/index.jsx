@@ -5,8 +5,12 @@ import DropdownNotification from "./DropdownNotification";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownUser from "./DropdownUser";
 import Logo from "../../assets/logo.png";
+import LocaleSwitcher from "../LocaleSwitcher";
+import { useTranslation } from "react-i18next";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
+  const { t } = useTranslation();
+
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white  dark:bg-boxdark ">
       <div className="flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11">
@@ -62,13 +66,14 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
             </button>
             <input
               type="text"
-              placeholder="Search"
+              placeholder={t("search_placeholder")}
               className="w-full relative  bg-transparent bg-black pr-4 text-black focus:outline-none dark:text-white"
             />
           </div>
         </div>
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
+            <LocaleSwitcher />
             <DarkModeSwitcher />
             <DropdownNotification />
           </ul>

@@ -19,11 +19,11 @@ const CardDataStats = ({
         <div
           className={`flex p-2 items-center justify-center rounded-sm bg-meta-2 dark:bg-meta-4 
       ${
-        children === "Completed"
-          ? "bg-[#EDF9F6] text-[#58B193]"
-          : children === "To do"
+        children === "In Progress" || children === "En cours"
+          ? "bg-[#F3F8FA] text-[#67B1E5]"
+          : children === "To do" || children === "À faire"
           ? "bg-[#FBF8F3] text-[#D38B3F]"
-          : "bg-[#F3F8FA] text-[#67B1E5]"
+          : "bg-[#EDF9F6] text-[#58B193]"
       }`}
         >
           {children}

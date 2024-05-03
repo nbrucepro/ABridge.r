@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const Breadcrumb = ({ pageName }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
       <nav>
         <ol className="flex items-center gap-2">
           <li>
             <Link className="font-medium text-primary" to="/">
-              Workspaces
+              {t("workspaces")}
             </Link>
           </li>
           <span>
@@ -17,7 +20,7 @@ const Breadcrumb = ({ pageName }) => {
           </span>
           <li>
             <Link className="font-medium text-primary" to="/">
-              Creative
+              {t("creative")}
             </Link>
           </li>
           <span>
@@ -28,8 +31,8 @@ const Breadcrumb = ({ pageName }) => {
         </ol>
       </nav>
       <div className="flex sm:items-end flex-col justify-center sm:mb-0 mb-4">
-        <h6 className="font-bold text-black dark:text-white">From 23 April</h6>
-        <h6 className="text-primary dark:text-white text-sm">Updated 12 min ago</h6>
+        <h6 className="font-bold text-black dark:text-white">{t("from")} 23 {t("april")}</h6>
+        <h6 className="text-primary dark:text-white text-sm">{t("updated")}</h6>
       </div>
     </div>
   );

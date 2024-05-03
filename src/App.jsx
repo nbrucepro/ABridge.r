@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Loader from "./common/Loader";
 import PageTitle from "./components/PageTitle";
 import Dashboard from "./pages/Dashboard";
-import { Provider } from "react-redux";
-import store from "./redux/store";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +20,7 @@ function App() {
   return loading ? (
     <Loader />
   ) : (
-    <Provider store={store}>
+    <React.Suspense fallback={<Loader />}>
       <Routes>
         <Route
           index
@@ -34,7 +32,7 @@ function App() {
           }
         />
       </Routes>
-    </Provider>
+    </React.Suspense>
   );
 }
 
