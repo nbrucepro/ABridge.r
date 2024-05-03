@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { FiFolderMinus, FiPlus  } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
+import { FiFolderMinus, FiPlus } from "react-icons/fi";
 import { FaRegFileLines } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
@@ -28,7 +28,7 @@ const Links = [
   },
   {
     title: "creative",
-    icon: <FiFolderMinus size={"1.5rem"} className="text-primary" />,
+    icon: <FiFolderMinus size={"1.5rem"} className="text-secondary" />,
   },
   {
     title: "creative",
@@ -45,12 +45,9 @@ const DownLinks = [
     title: "creative",
     icon: <IoPersonOutline size={"1.5rem"} className="text-primary" />,
   },
-]
+];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const location = useLocation();
-  const { pathname } = location;
-
   const trigger = useRef(null);
   const sidebar = useRef(null);
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
@@ -133,34 +130,32 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {Links.map((navl, index) => (
                 <NavLink
                   key={index}
-                  to="/creative/website"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-1.5 px-1 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes(navl.title) &&
-                    "bg-graydark dark:bg-meta-4"
+                  // to="/creative/website"
+                  className={`group relative flex items-center -mx-4 px-4 gap-2.5 rounded-sm py-1.5 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-meta-4 ${
+                    index == 3 && "border-secondary border-l-4"
                   }`}
                 >
-                  <div>{navl.icon}</div>
+                  <div className="text-secondary">{navl.icon}</div>
                 </NavLink>
               ))}
             </ul>
           </div>
           <div>
+            <h2 className="hidden">Creativ</h2>
             <ul className="mb-6 flex flex-col gap-1.5">
-              <Cirlced element={Pic3} type={"image"}/>
-              <Cirlced element={Pic2} type={"image"}/>
-              <Cirlced element={Pic1} type={"image"}/>
-              <Cirlced element={<FiPlus className="text-primary "/>}/>
-              </ul>
+              <Cirlced element={Pic3} type={"image"} />
+              <Cirlced element={Pic2} type={"image"} />
+              <Cirlced element={Pic1} type={"image"} />
+              <Cirlced element={<FiPlus className="text-primary " />} />
+            </ul>
           </div>
           <div className="relative bottom-0">
             <ul className="mt-24 flex flex-col gap-1.5">
               {DownLinks.map((navl, index) => (
                 <NavLink
                   key={index}
-                  to="/creative/website"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-1 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes(navl.title) &&
-                    "bg-graydark dark:bg-meta-4"
+                  // to="/creative/website"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 -mx-4 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-meta-4
                   }`}
                 >
                   <div>{navl.icon}</div>

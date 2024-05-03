@@ -8,11 +8,10 @@ import { useTranslation } from "react-i18next";
 import { getTodos } from "../../redux/features/todos.slice";
 
 const Tabs = ({ children }) => {
-  const [activeTab, setActiveTab] = useState(children[0].props.label);
-  const { todos } = useSelector((state) => state.todoSlice.todos);
+  const [activeTab, setActiveTab] = useState();
+  const { todos } = useSelector((state) => state?.todoSlice?.todos);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-
   const todoLen = todos?.length - 20 || 0;
 
   const handleNewTask = () => {
@@ -24,7 +23,9 @@ const Tabs = ({ children }) => {
     setActiveTab(newActiveTab);
   };
   const { t, i18n } = useTranslation();
-
+  useEffect(()=>{
+    setActiveTab(children[0]?.props?.label);
+  },[children])
   const handleLanguageChange = () => {
     switch (activeTab) {
       case "Toutes les tâches":
@@ -48,7 +49,7 @@ const Tabs = ({ children }) => {
       case "Completed":
         setActiveTab(t("completed"));
         break;
-      case "To do":
+      case "Complété":
         setActiveTab(t("completed"));
         break;
     }
@@ -72,7 +73,7 @@ const Tabs = ({ children }) => {
     <div>
       <div className="lg:flex-row flex-col flex bg-white dark:bg-boxdark px-4 rounded-md justify-between sm:max-w-6xl lg:items-center items-start">
         <div className="flex">
-          {children.map((child) => (
+          {typeof children !== "undefined" && children?.map((child) => (
             <button
               key={child.props.label}
               className={`${
@@ -81,7 +82,6 @@ const Tabs = ({ children }) => {
                   : "text-primary dark:text-white"
               }  text-sm  sm:text-sm sm:px-4  font-medium sm:py-4`}
               onClick={(e) => {
-                console.log(child.props);
                 handleClick(e, child.props.label);
               }}
             >

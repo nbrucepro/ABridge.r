@@ -27,6 +27,7 @@ const Starter = () => {
           <span>
             <IoIosArrowDown className="text-primary" />
           </span>
+          <h1 className="hidden">Creative Website</h1>
           <span>
             <PiLineVertical size={"2rem"} className="text-primary" />
           </span>

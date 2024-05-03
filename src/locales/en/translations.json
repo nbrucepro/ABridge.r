@@ -15,10 +15,16 @@
     "from": "From",
     "april": "April",
     "updated": "Updated 12 min ago",
+    "update": "Update",
+    "delete": "Delete",
     "min": "Min",
     "ago": "Ago",
     "add": "Add",
     "cancel": "Cancel",
     "submit": "Submit",
-    "enter_task_description": "Enter task description"
+    "enter_task_description": "Enter task description",
+    "task_added_successfully": "Task added successfully",
+    "task_updated_successfully": "Task updated successfully",
+    "task_deleted_successfully": "Task deleted successfully",
+    "mintodo_delete": "You can only delete 2 todos for better experience"
 }

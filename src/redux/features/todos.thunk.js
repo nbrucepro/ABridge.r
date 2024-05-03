@@ -7,7 +7,6 @@ export const fetchTodos = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       const response = await axios.get("https://dummyjson.com/todos?limit=23");
-      console.log(response.data);
       dispatch(getTodos(response.data));
     } catch (error) {
       throw error;
@@ -24,7 +23,39 @@ export const addNewTask = createAsyncThunk(
         taskData
       );
       // After adding the new task, fetch updated todos
-    //   dispatch(fetchTodos());
+      //   dispatch(fetchTodos());
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+export const updateTask = createAsyncThunk(
+  "todos/add",
+  async (taskData, { dispatch }) => {
+    try {
+      //Db is not interactive so let's comment this lines to avoid developemnt error such api 404
+      //   const response = await axios.put(
+      //     `https://dummyjson.com/todos/${taskData.id}`,
+      //     taskData
+      //   );
+      // After adding the new task, fetch updated todos
+      //   dispatch(fetchTodos());
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+export const deleteTask = createAsyncThunk(
+  "todos/add",
+  async (taskData, { dispatch }) => {
+    try {
+      //Db is not interactive so let's comment this lines to avoid developemnt error such api 404
+      //   const response = await axios.put(
+      //     `https://dummyjson.com/todos/${taskData.id}`,
+      //     taskData
+      //   );
+      // After adding the new task, fetch updated todos
+      //   dispatch(fetchTodos());
     } catch (error) {
       throw error;
     }

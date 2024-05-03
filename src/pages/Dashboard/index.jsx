@@ -7,6 +7,7 @@ import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import Starter from "../../components/Starter";
 import { fetchTodos } from "../../redux/features/todos.thunk";
 import { useTranslation } from "react-i18next";
+import Loader from "../../common/Loader";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -22,23 +23,21 @@ const Dashboard = () => {
   }, []);
   useEffect(() => {
     if (Array.isArray(todos)) {
-        classifyTasks();
+      classifyTasks();
     }
   }, [todos]);
   const classifyTasks = () => {
     const all = [...todos];
-    const alLen = all.length - 20;
+    const alLen = all.length < 23 ? 23 - all.length : all.length - 20;
     const todo = all.slice(0, alLen);
-    const inProgress = all.slice(alLen, alLen+6);
-    const completed = all.slice(alLen+6);
+    const inProgress = all.slice(alLen, alLen + 6);
+    const completed = all.slice(alLen + 6);
 
     setAllTasks(all);
     setTodoTasks(todo);
     setInProgressTasks(inProgress);
     setCompletedTasks(completed);
   };
-
-
 
   return (
     <Layout>
@@ -47,68 +46,74 @@ const Dashboard = () => {
         {t("website_design")}
       </h4>
       <Starter />
-      <Tabs>
-        <Tab label={t("all_task")}>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-            {allTasks.map((task) => (
-              <CardDataStats
-                key={task.id}
-                title={task.todo}
-                total={task.total}
-                rate={task.rate}
-                levelUp={task.levelUp}
-              >
-                {task.completed ? t("completed") : t("todo")}
-              </CardDataStats>
-            ))}
-          </div>
-        </Tab>
-        <Tab label={t("todo")}>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-            {todoTasks.map((task) => (
-              <CardDataStats
-                key={task.id}
-                title={task.todo}
-                total={task.total}
-                rate={task.rate}
-                levelUp={task.levelUp}
-              >
-                {t("todo")}
-              </CardDataStats>
-            ))}
-          </div>
-        </Tab>
-        <Tab label={t("in_progress")}>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-            {inProgressTasks.map((task) => (
-              <CardDataStats
-                key={task.id}
-                title={task.todo}
-                total={task.total}
-                rate={task.rate}
-                levelUp={task.levelUp}
-              >
-                {t("in_progress")}
-              </CardDataStats>
-            ))}
-          </div>
-        </Tab>
-        <Tab label={t("completed")}>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-            {completedTasks.map((task) => (
-              <CardDataStats
-                key={task.id}
-                title={task.todo}
-                total={task.total}
-                rate={task.rate}
-                levelUp={task.levelUp}
-              >
-                {t("completed")}
-              </CardDataStats>
-            ))}
-          </div>
-        </Tab>
-      </Tabs>
+      {allTasks?.length !== 0 ? (
+        <Tabs>
+          <Tab label={t("all_task")}>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+              {allTasks.map((task) => {
+                  return (
+                <CardDataStats
+                  taskId={task.id}
+                  title={task.todo}
+                  total={task.total}
+                  rate={task.rate}
+                  levelUp={task.levelUp}
+                >
+                  {task.completed ? t("completed") : t("todo")}
+                </CardDataStats>
+              )})}
+            
+            </div>
+          </Tab>
+          <Tab label={t("todo")}>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+              {todoTasks.map((task) => (
+                <CardDataStats
+                  taskId={task.id}
+                  title={task.todo}
+                  total={task.total}
+                  rate={task.rate}
+                  levelUp={task.levelUp}
+                >
+                  {t("todo")}
+                </CardDataStats>
+              ))}
+            </div>
+          </Tab>
+          <Tab label={t("in_progress")}>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+              {inProgressTasks.map((task) => (
+                <CardDataStats
+                  taskId={task.id}
+                  title={task.todo}
+                  total={task.total}
+                  rate={task.rate}
+                  levelUp={task.levelUp}
+                >
+                  {t("in_progress")}
+                </CardDataStats>
+              ))}
+            </div>
+          </Tab>
+          <Tab label={t("completed")}>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+              {completedTasks.map((task) => (
+                <CardDataStats
+                  taskId={task.id}
+                  title={task.todo}
+                  total={task.total}
+                  rate={task.rate}
+                  levelUp={task.levelUp}
+                >
+                  {t("completed")}
+                </CardDataStats>
+              ))}
+            </div>
+          </Tab>
+        </Tabs>
+      ) : (
+        <Loader />
+      )}
     </Layout>
   );
 };

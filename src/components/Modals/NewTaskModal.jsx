@@ -1,36 +1,46 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTask } from "../../redux/features/todos.thunk";
+import { addNewTask, updateTask } from "../../redux/features/todos.thunk";
 import { getTodos } from "../../redux/features/todos.slice";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
-const NewTaskModal = ({ onClose }) => {
+const NewTaskModal = ({ onClose, taskToEdit }) => {
   const dispatch = useDispatch();
   const { todos } = useSelector((state) => state.todoSlice);
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState(taskToEdit ? taskToEdit.title : "");
   const { t } = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewTask({ todo: task, completed: false, userId: 1 }));
-    //because the dummy todos api have no interactive database we added new todo in state locally
-    if (Array.isArray(todos.todos)) {
-      console.log(todos.todos.length);
-      const newTask = {
-        id: todos.todos.length + 1,
-        todo: task,
-        completed: false,
-        userId: 1,
-      };
-      // const updatedTasks = [...todos.todos, newTask];
-      const updatedTasks = [newTask, ...todos.todos];
-      if (typeof updatedTasks !== "undefined") {
-        try {
-          dispatch(getTodos({ todos: updatedTasks }));
-        } catch (err) {
-          console.log(err);
+    if (taskToEdit) {
+      dispatch(updateTask({ id: taskToEdit.id, todo: task }));
+      //Because we can't interact with database directly let's do some logics locally
+      const updatedTasks = todos.todos.map((todo) =>
+        todo.id === taskToEdit.id ? { ...todo, todo: task } : todo
+      );
+      dispatch(getTodos({ todos: updatedTasks }));
+      toast.success(t("task_updated_successfully"))
+    } else {
+      dispatch(addNewTask({ todo: task, completed: false, userId: 1 }));
+      //Because we can't interact with database directly let's do some logics locally
+      if (Array.isArray(todos.todos)) {
+        const newTask = {
+          id: todos.todos.length + 1,
+          todo: task,
+          completed: false,
+          userId: 1,
+        };
+        const updatedTasks = [newTask, ...todos.todos];
+        if (typeof updatedTasks !== "undefined") {
+          try {
+            dispatch(getTodos({ todos: updatedTasks }));
+          } catch (err) {
+            throw err;
+          }
         }
       }
+      toast.success(t("task_added_successfully"))
     }
     onClose();
   };

@@ -4,6 +4,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Loader from "./common/Loader";
 import PageTitle from "./components/PageTitle";
 import Dashboard from "./pages/Dashboard";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -32,6 +34,7 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer />
     </React.Suspense>
   );
 }
